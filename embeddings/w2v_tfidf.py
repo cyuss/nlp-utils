@@ -27,7 +27,7 @@ class Word2vecEmbedding:
         self.min_count = min_count # ignore all words with total frequency lower than this
         self.max_vocab_size = max_vocab_size # set the vocabulary size
         self.sample = sample # the threshold for configuring which higher-frequency words are randomly downsampled
-        self.workers = workers
+        self.workers = workers # define how many workers
         self.negative = negative # specifies how many “noise words” should be drawn
         self.alpha = alpha # the initial learning rate
 
@@ -39,7 +39,6 @@ class Word2vecEmbedding:
                                               sample=self.sample, negative=self.negative,
                                               alpha=self.alpha, workers=self.workers)
         self.model = dict(zip(self.word2vec.wv.index2word, self.word2vec.wv.vectors))
-        # self.dim = len(next(iter(self.model.values())))
         # train tf-idf vectorizer
         tfidf = TfidfVectorizer(analyzer=lambda x: x)
         tfidf.fit(X)
@@ -55,7 +54,7 @@ class Word2vecEmbedding:
         return np.array([
             np.mean([self.model[w] * self.word2weight[w]
                      for w in words if w in self.model] or
-                    [np.zeros(self.size)], axis=0)
+                    [np.random.rand(self.size)], axis=0)
             for words in MySentences(X)
         ])
     
