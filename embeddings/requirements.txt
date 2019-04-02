@@ -1,0 +1,4 @@
+gensim
+numpy
+sklearn
+dill==0.2.9
