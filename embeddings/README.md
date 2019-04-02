@@ -10,12 +10,12 @@ The different classes defined here are different variants of word embeddings tha
 
 *TF-IDF* stands for **term frequency-inverse document frequency**. It is a statistical measure used to evaluate how important a word is to a document in a collection of a corpus.
 
-The class `Word2vecEmbedding` define a vector representation of a **document** by weighting the vector representation of each word in that document by its Tf-Idf.
+The class `Word2vecTfIdfEmbedding` define a vector representation of a **document** by weighting the vector representation of each word in that document by its Tf-Idf.
 
 This class follows the same pattern as `Scikit-Learn` models by defining a `fit` and `transform` functions that train the model on the given data.
 
 ```python
-from embeddings.word2vec_tfidf import Word2vecEmbedding
+from embeddings.word2vec_tfidf import Word2vecTfIdfEmbedding
 
 # data sample
 X = ["bonjour tout le monde", 
@@ -24,7 +24,7 @@ X = ["bonjour tout le monde",
      "bonjour il fait beau",
      "comment vous faites"]
 # initialize the model
-model = Word2vecEmbedding(size=20, min_count=1, window=1)
+model = Word2vecTfIdfEmbedding(size=20, min_count=1, window=1)
 # train the model
 model.fit(X)
 # get the vector representation of a document

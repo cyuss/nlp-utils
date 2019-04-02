@@ -18,7 +18,7 @@ class MySentences:
             yield line.split()
 
 # word2vec class
-class Word2vecEmbedding:
+class Word2vecTfIdfEmbedding:
     def __init__(self, size=100, window=5, min_count=5, max_vocab_size=None, sample=.001, workers=3, negative=5, alpha=.025):
         self.word2weight = None
         # model parameters
